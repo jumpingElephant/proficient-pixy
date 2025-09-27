@@ -1,0 +1,7 @@
+greeting:
+  message: "Hello"
+quarkus:
+  otel:
+    enabled: false
+  config:
+    locations: application-secrets.yml

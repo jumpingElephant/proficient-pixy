@@ -1,0 +1,38 @@
+{#let name=http:param('name', 'Qute')}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{config:property('greeting.message')} {name}</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        h1 {
+            color: #4695EB;
+            font-size: 6vw;
+        }
+
+        h1 b {
+            color: #be9100;
+        }
+
+        p {
+            font-size: 2vw;
+        }
+    </style>
+</head>
+<body>
+<h1>{config:property('greeting.message')} <b>{name}</b></h1>
+
+<dl>
+    <dt>Handshake Type</dt>
+    <dd>{config:property('greeting.handshake')}</dd>
+    <dt>Private Key</dt>
+    <dd><pre>{config:property('greeting.handshake.privateKey')}</pre></dd>
+</dl>
+
+</body>
+</html>
