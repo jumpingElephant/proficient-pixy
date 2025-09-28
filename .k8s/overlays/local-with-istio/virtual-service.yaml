@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: proficient-pixy-vs
+spec:
+  gateways:
+    - istio-system/edge-gw
+  hosts:
+    - "sample-app.apps.k3s01.local"
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 40443
+        redirectCode: 301
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: proficient-pixy.sample-app.svc.cluster.local
+            port:
+              number: 80

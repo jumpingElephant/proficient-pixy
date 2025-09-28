@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proficient-pixy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: web
+      annotations:
+        proxy.istio.io/config: |
+          {
+            "holdApplicationUntilProxyStarts": true
+          }
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/jumpingelephant/proficient-pixy
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: proficient-pixy-config

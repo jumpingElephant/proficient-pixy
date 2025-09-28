@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: proficient-pixy
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/jumpingElephant/proficient-pixy'
+    path: .k8s/overlays/local-with-istio
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: sample-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

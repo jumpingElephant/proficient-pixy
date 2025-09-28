@@ -1,0 +1,32 @@
+apiVersion: builtin
+kind: LabelTransformer
+metadata:
+  name: inject-standard-labels
+labels: # https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels
+  app.kubernetes.io/part-of: sample-app
+  app.kubernetes.io/name: proficient-pixy
+  app.kubernetes.io/version: "1.0.0"
+fieldSpecs:
+  # Apply to all resource metadata
+  - path: metadata/labels
+
+  # Controllers: pod template labels
+  - path: spec/template/metadata/labels
+    kind: Deployment
+  - path: spec/template/metadata/labels
+    kind: StatefulSet
+  - path: spec/template/metadata/labels
+    kind: DaemonSet
+
+  # Controllers: selector.matchLabels
+  - path: spec/selector/matchLabels
+    kind: Deployment
+  - path: spec/selector/matchLabels
+    kind: StatefulSet
+  - path: spec/selector/matchLabels
+    kind: DaemonSet
+
+  # Services: selector
+  - path: spec/selector
+    kind: Service
+    create: true
