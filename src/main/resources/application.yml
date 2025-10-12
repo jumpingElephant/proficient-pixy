@@ -3,5 +3,8 @@ greeting:
 quarkus:
   otel:
     enabled: false
+smallrye:
   config:
-    locations: application-secrets.yml
+    source:
+      file:
+        locations: secrets
