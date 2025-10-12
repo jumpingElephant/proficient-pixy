@@ -11,9 +11,15 @@ labels:
 resources:
   - ../../base
   - virtual-service.yaml
+  - secret-provider-class.yaml
 
 configMapGenerator:
   - name: proficient-pixy-config
     behavior: replace
+    options:
+      disableNameSuffixHash: false
     envs:
       - proficient-pixy-config.env
+
+patches:
+  - path: deployment-patch.yaml

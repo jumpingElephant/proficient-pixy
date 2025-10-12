@@ -3,8 +3,9 @@ greeting:
 quarkus:
   otel:
     enabled: false
-smallrye:
-  config:
-    source:
-      file:
-        locations: secrets
+
+"%dev":
+  greeting:
+    handshake:
+      ~: tls
+      privateKey: "s3cr3t"

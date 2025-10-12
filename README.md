@@ -87,3 +87,16 @@ at http://localhost:8080/some-page?name=World
 Monitor your application's health using SmallRye Health
 
 [Related guide section...](https://quarkus.io/guides/smallrye-health)
+
+
+# Secret
+
+Login to vault and create secret
+
+```shell
+kubectl -n vault exec -it statefulset/vault -- vault login -non-interactive -method=token root
+kubectl -n vault exec -it statefulset/vault -- env VAULT_ADDR=http://vault.vault.svc.cluster.local:8200 sh -xc 'vault kv put sample-app/proficient-pixy/greeting/handshake type=mtls privateKey="'"-----BEGIN RSA PRIVATE KEY-----
+d2hhdCBsaWVzIGluIHRoZSBzaGFkb3cgb2YgdGhlIHN0YXR1ZT8K
+-----END RSA PRIVATE KEY-----"'"'
+kubectl -n vault exec -it statefulset/vault -- env VAULT_ADDR=http://vault.vault.svc.cluster.local:8200 sh -xc ''
+```
