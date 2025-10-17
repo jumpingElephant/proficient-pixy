@@ -25,7 +25,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: proficient-pixy-config
-          restartPolicy: Always
           startupProbe: # checks if the application has finished its startup process
             httpGet:
               path: /q/health/live
