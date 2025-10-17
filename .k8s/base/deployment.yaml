@@ -25,3 +25,26 @@ spec:
           envFrom:
             - configMapRef:
                 name: proficient-pixy-config
+          restartPolicy: Always
+          startupProbe: # checks if the application has finished its startup process
+            httpGet:
+              path: /q/health/live
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 1
+            failureThreshold: 30
+          livenessProbe: # checks if the application is running
+            httpGet:
+              path: /q/health/live
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            failureThreshold: 3
+          readinessProbe: # checks if the application is ready to handle requests
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 30
+            failureThreshold: 2
+      terminationGracePeriodSeconds: 10
