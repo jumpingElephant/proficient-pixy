@@ -17,6 +17,7 @@ spec:
             "holdApplicationUntilProxyStarts": true
           }
     spec:
+      restartPolicy: Always
       containers:
         - name: app
           image: ghcr.io/jumpingelephant/proficient-pixy
