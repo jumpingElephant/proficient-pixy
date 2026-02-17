@@ -7,16 +7,16 @@ updates:
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
       
   # Docker updates in docker-compose.yml and Dockerfiles
   - package-ecosystem: "docker"
     directory: "/src/main/docker/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
 
   # Workflow updates
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
