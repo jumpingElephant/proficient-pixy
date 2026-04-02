@@ -60,7 +60,7 @@ jobs:
 
       # Build uses the Dockerfile that expects Maven-built artifacts in target/
       - name: Build and push image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ${{ env.DOCKERFILE_PATH }}
